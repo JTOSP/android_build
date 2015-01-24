@@ -523,7 +523,7 @@ function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
-        mka bacon
+        mka jtosp
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -554,7 +554,7 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the CM model name
+            # This is probably just the JTOSP model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
@@ -607,7 +607,7 @@ function lunch()
     check_product $product
     if [ $? -ne 0 ]
     then
-        # if we can't find a product, try to grab it off the CM github
+        # if we can't find a product, try to grab it off the JTOSP github
         T=$(gettop)
         pushd $T > /dev/null
         build/tools/roomservice.py $product
@@ -711,7 +711,7 @@ function eat()
 {
     if [ "$OUT" ] ; then
         MODVERSION=$(get_build_var JTOSP_VERSION)
-        ZIPFILE=cm-$MODVERSION.zip
+        ZIPFILE=jtosp-$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
